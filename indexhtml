@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anjani Med Supplies</title>
+<!-- Google Fonts: Montserrat for headings and Open Sans for body -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary-color: #267373;
+    --secondary-color: #7db9b6;
+    --accent-color: #e0efe6;
+    --highlight-color: #1f3334;
+    --background-color: #f8fbf9;
+    --text-color: #213f40;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --max-width: 1140px;
+    --border-radius: 16px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  a:hover,
+  a:focus {
+    color: var(--secondary-color);
+    outline: none;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 1.8rem 2rem;
+    color: var(--accent-color);
+    text-align: center;
+    box-shadow: 0 8px 22px rgba(38,115,115,0.55);
+    user-select: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    letter-spacing: 1.8px;
+  }
+  nav {
+    margin-top: 1rem;
+  }
+  nav a {
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    border-radius: 2px;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+  }
+  nav a:hover::after,
+  nav a:focus::after {
+    width: 65%;
+  }
+  main {
+    max-width: var(--max-width);
+    margin: 3.5rem auto 4rem;
+    padding: 0 1.5rem;
+  }
+  section {
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+    will-change: opacity, transform;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  h1, h2 {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--highlight-color);
+    font-family: var(--font-heading);
+  }
+  h1 {
+    font-size: 3.3rem;
+    margin-bottom: 1.2rem;
+    user-select: none;
+  }
+  h2 {
+    font-size: 2.4rem;
+    border-bottom: 4px solid var(--primary-color);
+    padding-bottom: 0.35rem;
+    margin-bottom: 2rem;
+  }
+  p, li {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.65;
+  }
+  /* Home section styling */
+  .home {
+    background: white;
+    padding: 5rem 3rem 4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 12px 38px rgba(38,115,115,0.25);
+    text-align: center;
+  }
+  .contact-info {
+    margin-top: 2.8rem;
+    font-weight: 700;
+    font-size: 1.28rem;
+    color: var(--primary-color);
+    user-select: text;
+  }
+  .contact-info strong {
+    min-width: 85px;
+    display: inline-block;
+  }
+  .contact-info a {
+    color: var(--secondary-color);
+    font-weight: 700;
+  }
+  /* Why Choose Us */
+  .why-choose-us {
+    max-width: 680px;
+    margin: 0 auto;
+    list-style: none;
+    padding-left: 0;
+  }
+  .why-choose-us li {
+    background: var(--accent-color);
+    border-radius: 16px;
+    padding: 22px 30px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+    box-shadow: 6px 6px 22px rgba(38,115,115,0.15);
+    user-select: text;
+  }
+  /* Products list styling */
+  .products-list {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem 2.4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 9px 26px rgba(38,115,115,0.15);
+  }
+  .products-list ul {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+  }
+  .products-list li {
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0.7rem 0;
+    color: var(--highlight-color);
+  }
+  /* FAQ Section */
+  .faq {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+    padding: 1.6rem 1.8rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .faq-item:hover {
+    background-color: var(--accent-color);
+  }
+  .faq-question {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-answer {
+    margin-top: 0.8rem;
+    font-weight: 500;
+    color: var(--highlight-color);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    display: none;
+  }
+  .faq-item.expanded .faq-answer {
+    display: block;
+  }
+  .faq-toggle {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--secondary-color);
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.expanded .faq-toggle {
+    transform: rotate(45deg);
+  }
+  /* Testimonials Section */
+  .testimonials {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    font-style: italic;
+    color: var(--highlight-color);
+    user-select: none;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: "“";
+    font-size: 4rem;
+    color: var(--secondary-color);
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .testimonial-author {
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 1rem;
+    text-align: right;
+    color: var(--primary-color);
+    font-size: 1rem;
+    user-select: text;
+  }
+  /* How to Order */
+  .how-to-order ol {
+    max-width: 740px;
+    margin: 0 auto;
+    padding-left: 1.4rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--highlight-color);
+    letter-spacing: 0.02em;
+  }
+  .how-to-order li {
+    padding: 18px 0;
+    border-bottom: 1px solid #d6e5e1;
+  }
+  .how-to-order li:last-child {
+    border: none;
+  }
+  .how-to-order strong {
+    color: var(--primary-color);
+  }
+  .how-to-order a {
+    color: var(--secondary-color);
+  }
+  /* Contact Section */
+  .contact-info {
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    color: var(--highlight-color);
+    line-height: 1.7;
+    user-select: text;
+    text-align: center;
+  }
+  .contact-info p {
+    margin: 9px 0;
+  }
+  .contact-info strong {
+    color: var(--primary-color);
+    min-width: 110px;
+    display: inline-block;
+  }
+  .contact-info a {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
+  /* Footer */
+  footer {
+    background: var(--primary-color);
+    padding: 2rem 2rem;
+    color: var(--accent-color);
+    text-align: center;
+    font-size: 1.05rem;
+    user-select: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: 0 -3px 18px rgba(38,115,115,0.24);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+  /* Accessibility focus outlines */
+  a:focus, nav a:focus, .faq-item:focus, .testimonial-card:focus {
+    outline: 4px solid var(--secondary-color);
+    outline-offset: 3px;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      font-size: 1.9rem;
+      padding: 1.2rem 1.8rem;
+    }
+    nav a {
+      font-size: 1.15rem;
+      margin: 0 14px;
+    }
+    h1 {
+      font-size: 2.8rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header role="banner" aria-label="Anjani Med Supplies Website Header">
+  Anjani Med Supplies
+  <nav role="navigation" aria-label="Primary navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#why-choose-us">Why Choose Us</a>
+    <a href="#products">Products</a>
+    <a href="#faqs">FAQs</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#how-to-order">How to Order</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main role="main">
+  <section id="home" class="home" aria-label="Home section" tabindex="0">
+    <h1>Welcome to Anjani Med Supplies</h1>
+    <p>Your trusted partner for high-quality medical disposables. We provide reliable and affordable products to hospitals, clinics, labs, schools, and nursing homes — delivered across India.</p>
+    <div class="contact-info" aria-label="Contact details">
+      <p><strong>Phone:</strong> <a href="tel:+919319340938">9319340938</a> | <strong>Email:</strong> <a href="mailto:anjanimedsupplies@gmail.com">anjanimedsupplies@gmail.com</a></p>
+      <p>Contact us for bulk orders or inquiries.</p>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-title" tabindex="0">
+    <h2 id="about-title">About Us</h2>
+    <p>At Anjani Med Supplies, we are committed to delivering premium quality medical consumables at competitive prices. Our products are sourced from verified suppliers, ensuring hygiene, safety, and effectiveness for healthcare professionals and patients alike.</p>
+  </section>
+
+  <section id="why-choose-us" aria-labelledby="why-choose-us-title" tabindex="0">
+    <h2 id="why-choose-us-title">Why Choose Us?</h2>
+    <ul class="why-choose-us">
+      <li>Certified and reliable products</li>
+      <li>Pan-India delivery</li>
+      <li>Responsive customer support</li>
+      <li>Flexible ordering via call or WhatsApp</li>
+    </ul>
+  </section>
+
+  <section id="products" aria-labelledby="products-title" tabindex="0">
+    <h2 id="products-title">Our Products</h2>
+    <div class="products-list">
+      <ul>
+        <li>Surgical Gloves</li>
+        <li>Face Masks</li>
+        <li>Syringes</li>
+        <li>IV Sets / Infusion Sets</li>
+        <li>Bandages / Gauze Rolls</li>
+        <li>Shoe Covers / Caps</li>
+        <li>Aprons / Gowns</li>
+        <li>Disposable Bed Sheets / Pillow Cases</li>
+        <li>Biohazard Waste Bags</li>
+        <li>Hand Sanitizers / Alcohol Swabs</li>
+        <li>Cotton Rolls &amp; Other Medical Consumables</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faqs" aria-labelledby="faqs-title" tabindex="0">
+    <h2 id="faqs-title">Frequently Asked Questions</h2>
+    <div class="faq" role="list">
+      <div class="faq-item" tabindex="0" role="listitem" aria-expanded="false" aria-controls="faq1_desc" id="faq1" role="button">
+        <div class="faq-question" aria-describedby="faq1_desc" aria-haspopup="true" aria-controls="faq1_desc">
+          What is your delivery timeframe?
+          <span class="faq-toggle">+</span>
+        </div>
+        <p class="faq-answer" id="faq1_desc" hidden>We strive to deliver all orders within 3-5 business days depending on location and stock availability.</p>
+      </div>
+      <div class="faq-item" tabindex="0" role="listitem" aria-expanded="false" aria-controls="faq2_desc" id="faq2" role="button">
+        <div class="faq-question" aria-describedby="faq2_desc" aria-haspopup="true" aria-controls="faq2_desc">
+          Do you offer bulk discounts?
+          <span class="faq-toggle">+</span>
+        </div>
+        <p class="faq-answer" id="faq2_desc" hidden>Yes! We offer competitive bulk pricing for large orders. Contact us for a customized quote.</p>
+      </div>
+      <div class="faq-item" tabindex="0" role="listitem" aria-expanded="false" aria-controls="faq3_desc" id="faq3" role="button">
+        <div class="faq-question" aria-describedby="faq3_desc" aria-haspopup="true" aria-controls="faq3_desc">
+          Are your products compliant with medical regulations?
+          <span class="faq-toggle">+</span>
+        </div>
+        <p class="faq-answer" id="faq3_desc" hidden>Absolutely. All our products meet or exceed standard medical quality and safety certifications.</p>
+      </div>
+      <div class="faq-item" tabindex="0" role="listitem" aria-expanded="false" aria-controls="faq4_desc" id="faq4" role="button">
+        <div class="faq-question" aria-describedby="faq4_desc" aria-haspopup="true" aria-controls="faq4_desc">
+          How can I place an order?
+          <span class="faq-toggle">+</span>
+        </div>
+        <p class="faq-answer" id="faq4_desc" hidden>Orders can be placed through our contact form, by phone, or email. We’ll assist you every step of the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" aria-labelledby="testimonials-title" tabindex="0">
+    <h2 id="testimonials-title">What Our Customers Say</h2>
+    <div class="testimonials" role="list">
+      <article class="testimonial-card" role="listitem" tabindex="0">
+        <p>Anjani Med Supplies is our go-to partner for medical supplies. Their products are top-notch and their service is impeccable!</p>
+        <div class="testimonial-author">- Dr. Priya Sharma</div>
+      </article>
+      <article class="testimonial-card" role="listitem" tabindex="0">
+        <p>The quality and timely delivery have helped our clinic stay fully stocked and prepared at all times. Highly recommend!</p>
+        <div class="testimonial-author">- Rajesh Kumar, Clinic Manager</div>
+      </article>
+      <article class="testimonial-card" role="listitem" tabindex="0">
+        <p>Excellent products and responsive customer support. Anjani Med Supplies truly understands healthcare needs.</p>
+        <div class="testimonial-author">- Meena Joshi</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="how-to-order" aria-labelledby="how-to-order-title" tabindex="0">
+    <h2 id="how-to-order-title">How to Order</h2>
+    <div class="how-to-order" style="max-width: 740px; margin: 0 auto; padding-left: 1.4rem; font-weight: 700; font-size: 1.2rem; line-height: 1.5; color: var(--highlight-color); letter-spacing: 0.02em;">
+      <ol>
+        <li><strong>Call or WhatsApp us</strong> at <a href="tel:+919319340938">9319340938</a></li>
+        <li>Share your product list and quantity</li>
+        <li>Get delivery anywhere in India</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title" tabindex="0">
+    <h2 id="contact-title">Contact Us</h2>
+    <div class="contact-info" style="max-width: 780px; margin: 0 auto; font-size: 1.25rem; color: var(--highlight-color); line-height: 1.7; user-select: text; text-align: center;">
+      <p><strong>Anjani Med Supplies</strong></p>
+      <p>Sector-66, Noida, Uttar Pradesh, 231301</p>
+      <p><strong>Phone:</strong> <a href="tel:+919319340938">9319340938</a></p>
+      <p><strong>Email:</strong> <a href="mailto:anjanimedsupplies@gmail.com">anjanimedsupplies@gmail.com</a></p>
+      <p><strong>Delivery:</strong> Available PAN India</p>
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo" aria-label="Footer" style="background: var(--primary-color); padding: 2rem 2rem; color: var(--accent-color); text-align: center; font-size: 1.05rem; user-select: none; border-radius: 0 0 var(--border-radius) var(--border-radius); box-shadow: 0 -3px 18px rgba(38,115,115,0.24); font-weight: 700; letter-spacing: 1.5px;">
+  &copy; 2024 Anjani Med Supplies. All rights reserved.
+</footer>
+<script>
+  // Animate sections on scroll for smooth reveal
+  function onScroll() {
+    const sections = document.querySelectorAll('main section');
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('load', onScroll);
+
+  // FAQ expand/collapse interaction
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const expanded = item.classList.toggle('expanded');
+      item.setAttribute('aria-expanded', expanded);
+      const answer = item.querySelector('.faq-answer');
+      if (answer) {
+        answer.hidden = !expanded;
+      }
+      const toggle = item.querySelector('.faq-toggle');
+      if (toggle) {
+        toggle.textContent = expanded ? '−' : '+';
+      }
+    });
+    // Keyboard accessibility for FAQ toggling
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
